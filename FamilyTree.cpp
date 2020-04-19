@@ -36,7 +36,6 @@ Tree& Tree :: addFather(string son, string father)
 		p->type="great-"+temp->type;
 	    int l=p->type.length();
 	    p->type=p->type.substr(0,l-11);
-		cout<<p->type<<endl;
 	    p->type+="grandfather";
 	}
     temp->father=p;
@@ -55,12 +54,11 @@ Tree& Tree :: addMother(string son, string mother)
 	if(temp->type =="me")
 		p->type="mother";
 	else if(temp->type == "mother" || temp->type == "father" )
-		p->type="grandfather";
+		p->type="grandmother";
 		else {
 		p->type="great-"+temp->type;
 	    int l=p->type.length();
 	    p->type=p->type.substr(0,l-11);
-		cout<<p->type<<endl;
 	    p->type+="grandmother";
 	}
 	temp->mother=p;
@@ -86,7 +84,7 @@ string Tree :: find(string type)
 void Tree :: remove(string name)
 {
 	node *temp=findNode(root,name);
-	if(temp==nullptr) throw std::out_of_range("The name not exists in the text");
+	if(temp==nullptr) throw std::out_of_range("The name not exists in the tree");
 	node *p=temp->son;
 	if(p->mother == temp){
 		p->mother=nullptr;
